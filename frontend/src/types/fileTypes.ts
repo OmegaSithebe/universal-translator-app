@@ -1,0 +1,7 @@
+export const SUPPORTED_FILES = [
+  "application/pdf",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+]
+
+export const MAX_FILE_SIZE = 10 * 1024 * 1024

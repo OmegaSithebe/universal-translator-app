@@ -1,12 +1,16 @@
-export default function TranslateButton(){
+"use client"
 
-    return(
+type Props = {
+  onTranslate: () => void
+}
 
-        <button className="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700">
-
-            Translate
-
-        </button>
-
-    )
+export default function TranslateButton({ onTranslate }: Props) {
+  return (
+    <button
+      onClick={onTranslate}
+      className="bg-blue-600 text-white px-6 py-2 rounded-lg"
+    >
+      Translate
+    </button>
+  )
 }

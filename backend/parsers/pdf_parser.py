@@ -1,0 +1,12 @@
+import pdfplumber
+import io
+
+def parse_pdf(file_bytes):
+
+    text = ""
+
+    with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text() or ""
+
+    return text

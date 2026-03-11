@@ -1,54 +1,26 @@
 "use client"
 
-import { useState } from "react"
-import { validateFile } from "@/features/translator/uploadService"
+import React from "react";
 
-export default function UploadBox(){
+type Props = {
+  setFile: (file: File | null) => void;
+};
 
-    const [fileName, setFileName] = useState<string | null>(null)
-    const [error, setError] = useState<string | null>(null)
+export default function UploadBox({ setFile }: Props) {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadedFile = e.target.files?.[0] || null;
+    setFile(uploadedFile);
+  };
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <label className="font-semibold">Upload Document</label>
 
-        const file = event.target.files?.[0]
-
-        if (!file) return
-
-        const validation = validateFile(file)
-
-        if (!validation.valid) {
-            setError(validation.error)
-            setFileName(null)
-            return
-        }
-
-        setError(null)
-        setFileName(file.name)
-
-        console.log("Uploaded file:", file)
-    }
-
-    return (
-
-        <div className="flex flex-col items-center gap-3 bg-gray-200 rounded-xl px-8 py-6 shadow-md">
-
-            <input
-                type="file"
-                onChange={handleFileChange}
-            />
-
-            {fileName && (
-                <p className="text-green-600">
-                    File selected: {fileName}
-                </p>
-            )}
-
-            {error && (
-                <p className="text-red-500">
-                    {error}
-                </p>
-            )}
-
-        </div>
-    )
+      <input
+        type="file"
+        onChange={handleFileChange}
+        className="border p-2 rounded"
+      />
+    </div>
+  );
 }

@@ -1,13 +1,27 @@
-export default function TargetLanguage(){
+"use client"
 
-    return(
-        <select className="bg-orange-200 rounded-xl px-6 py-3">
+type Props = {
+  target: string
+  setTarget: (value: string) => void
+}
 
-            <option>Select Target Language</option>
-            <option>English</option>
-            <option>Spanish</option>
-            <option>French</option>
+export default function TargetLanguage({ target, setTarget }: Props) {
+  return (
+    <div className="flex flex-col items-center gap-2">
 
-        </select>
-    )
+      <label className="font-semibold">Target Language</label>
+
+      <select
+        value={target}
+        onChange={(e) => setTarget(e.target.value)}
+        className="border p-2 rounded"
+      >
+        <option>Spanish</option>
+        <option>French</option>
+        <option>German</option>
+        <option>English</option>
+      </select>
+
+    </div>
+  )
 }

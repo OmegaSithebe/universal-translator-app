@@ -1,12 +1,20 @@
-export default function DownloadResult(){
+"use client"
 
-    return(
+type Props = {
+  downloadUrl: string | null
+}
 
-        <button className="bg-green-500 text-white px-8 py-3 rounded-xl">
+export default function DownloadResult({ downloadUrl }: Props) {
 
-            Download Translated Document
+  if (!downloadUrl) return null
 
-        </button>
-
-    )
+  return (
+    <a
+      href={downloadUrl}
+      download
+      className="bg-green-500 text-white px-6 py-2 rounded-lg"
+    >
+      Download Translated Document
+    </a>
+  )
 }
